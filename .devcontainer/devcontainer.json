@@ -1,0 +1,49 @@
+{
+  "name": "Laravel Dev Container",
+  // Usa una imagen base de PHP. Puedes cambiar la versión de PHP (ej: 8.1, 8.3)
+  "image": "mcr.microsoft.com/devcontainers/php:8.2-bullseye",
+
+  // Añade características como Composer
+  "features": {
+    "ghcr.io/devcontainers/features/composer:1": {}
+  },
+
+  // Comandos a ejecutar después de que el contenedor se haya creado.
+  // Si tu proyecto Laravel ya está en el repositorio (con su composer.json),
+  // esto instalará las dependencias.
+  "postCreateCommand": "composer install",
+
+  // Redirige puertos para 'php artisan serve'
+  "forwardPorts": [8000],
+
+  // Opcional: Personalizaciones de VS Code específicas para este contenedor
+  "customizations": {
+    "vscode": {
+      "settings": {
+        // Asegura que la terminal por defecto sea bash
+        "terminal.integrated.defaultProfile.linux": "bash",
+        // Puedes añadir otras configuraciones de VS Code aquí
+        "files.associations": {
+            "*.blade.php": "html"
+        }
+      },
+      "extensions": [
+        "bmewburn.vscode-intelephense-client", // Autocompletado y análisis de PHP
+        "onecentlin.laravel-blade",           // Soporte para Blade
+        "EditorConfig.EditorConfig",          // Para mantener la consistencia del código
+        "ryannaddy.laravel-artisan",          // Comandos de Artisan desde VS Code
+        "dbaeumer.vscode-eslint"              // Si usas JavaScript con ESLint
+        // Añade más extensiones que uses
+      ]
+    }
+  },
+
+  // Opcional: Si quieres que 'php artisan serve' se ejecute automáticamente al abrir el Codespace.
+  // "postAttachCommand": {
+  //   "server": "php artisan serve --host=0.0.0.0 --port=8000"
+  // },
+
+  // El usuario que ejecutará los comandos dentro del contenedor.
+  // 'vscode' es común para las imágenes de Microsoft.
+  "remoteUser": "vscode"
+}
